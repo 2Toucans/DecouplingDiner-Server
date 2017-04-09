@@ -76,6 +76,15 @@ class Maintenance extends Rest_Controller {
     // Handle an incoming DELETE - cruD
     function index_delete()
     {
-        $this->response('ok', 200);
+        $key = $this->get('id');
+        $this->menu->delete($key);
+        $this->response(array('ok'), 200);
+    }
+    // Handle an incoming DELETE - delete a menu item
+    function item_delete()
+    {
+        $key = $this->get('id');
+        $this->menu->delete($key);
+        $this->response(array('ok'), 200);
     }
 }
