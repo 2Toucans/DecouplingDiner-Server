@@ -38,10 +38,21 @@ class Maintenance extends Rest_Controller {
             $this->response(array('error' => 'Menu item not found!'), 404);        
     }
 
-    // Handle an incoming PUT - crUd
+    // Handle an incoming PUT - update a menu item
     function index_put()
     {
-        $this->response('ok', 200);
+        $key = $this->get('id');
+        $record = array_merge(array('id' => $key), $this->_put_args);
+        $this->menu->update($record);
+        $this->response(array('ok'), 200);
+    }
+    
+    function item_put()
+    {
+        $key = $this->get('id');
+        $record = array_merge(array('id' => $key), $this->_put_args);
+        $this->menu->update($record);
+        $this->response(array('ok'), 200);
     }
 
     // Handle an incoming POST - add a new menu item
