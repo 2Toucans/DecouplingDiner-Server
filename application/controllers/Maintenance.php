@@ -44,10 +44,22 @@ class Maintenance extends Rest_Controller {
         $this->response('ok', 200);
     }
 
-    // Handle an incoming POST - Crud
+    // Handle an incoming POST - add a new menu item
     function index_post()
     {
-        $this->response('ok', 200);
+        $key = $this->get('id');
+        $record = array_merge(array('id' => $key), $_POST);
+        $this->menu->add($record);
+        $this->response(array('ok'), 200);
+    }
+    
+    // Handle an incoming POST - add a new menu item
+    function item_post()
+    {
+        $key = $this->get('id');
+        $record = array_merge(array('id' => $key), $_POST);
+        $this->menu->add($record);
+        $this->response(array('ok'), 200);
     }
 
     // Handle an incoming DELETE - cruD
