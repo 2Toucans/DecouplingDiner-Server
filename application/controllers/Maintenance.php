@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+require APPPATH . '/third_party/restful/libraries/Rest_controller.php';
 
 class Maintenance extends Rest_Controller {
 
@@ -12,7 +13,18 @@ class Maintenance extends Rest_Controller {
     // Handle an incoming GET - cRud
     function index_get()
     {
-        $this->response('ok', 200);
+        $key = $this->get('id');
+        if (!$key)
+        {
+            $this->response($this->menu->all(), 200);
+        } else
+        {
+            $result = $this->menu->get($key);
+            if ($result != null)
+                $this->response($result, 200);
+            else
+                $this->response(array('error' => 'Menu item not found!'), 404);
+        }
     }
 
     // Handle an incoming PUT - crUd
